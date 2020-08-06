@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>	
+	<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+		
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		
+		<!-- Popper JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	
+    <title>AJOUTER UN CAS</title>
+</head>
+<body>
+<div class="panel-heading" style="text-align:center;font-size:2em">LA COVID 19 EST UNE REALITE</div>
+  <br/>
+
+<div class="container col-sm-6 col-md-8" >
+    <div class="panel panel-primary">
+        <div class="panel-heading" style="text-align:center;font-size:2em">Liste Cas</div>
+        <div class="panel-body">
+            <table class="table table-striped table-bordered">
+                <tr >
+                    <th style="text-align:center">Identifiant</th>
+                    <th style="text-align:center">Nom</th>
+                    <th style="text-align:center">Prénom</th>
+                    <th style="text-align:center">Adresse</th>
+                   
+                    <th style="text-align:center">syptome</th>
+                    <th style="text-align:center">Action</th>                    
+                </tr>
+                <tr th:each="cas:${liste_cas}">
+                    <td th:text="${cas.id}"></td>
+                    <td th:text="${cas.nom}"></td>
+                    <td th:text="${cas.prenom}"></td>
+                    <td th:text="${cas.adresse}"></td>
+                   
+                    <td th:text="${cas.symptome}"></td>
+                    <td><a th:href="@{/cas/edit(id=${cas.id})}">Update</a></td>                    
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<br/>
+	<div class="row"> 
+	<div class="container col-sm-4 col-md-4" >
+		<div class="panel panel-primary">
+			<div class="panel-heading" style="text-align:center;font-size:1.5em">AJOUTEZ UN CAS CONFIRME</div>
+			<div class="panel-body" style=" margin: 20px;">
+			<form method="POST" th:action="@{/confirme/add}" th:object="${casconfirme}">
+		 				<div class="from-group">
+		 					<label class="from-label">Identifiant</label>
+		 					<input class="form-control" type="text" name="id"  th:field="*{id}" readonly/>
+		 				</div>
+		 						
+		 				<div class="from-group">
+		 					<label class="from-label">Nom</label>
+		 					<input class="form-control" type="text" name="nom" th:field="*{nom}"/>
+		 				</div>
+		 				<div class="from-group">
+		 					<label class="from-label">Prénom</label>
+		 					<input class="form-control" type="text" name="prenom"  th:field="*{prenom}"/>
+		 				</div>
+		 				
+		 				<div class="from-group">
+		 					<label class="from-label">Adresse</label>
+		 					<input class="form-control" type="text" name="adresse"  th:field="*{adresse}"/>
+		 				</div>
+		 				
+		 				
+						 <br/>
+		 				<div class="from-group">
+		 					<input class="btn btn-success" type="submit" name="valider" value="Valider" />		 					
+		 					<input class="btn btn-danger" type="reset" name="annuler" value="Annuler" />
+		 				</div>
+		 			</form>
+			</div>			
+		</div>		
+	</div>
+	
+	
+<div class="container col-sm-4 col-md-4" >
+		<div class="panel panel-primary">
+			<div class="panel-heading" style="text-align:center;font-size:1.5em">AJOUTEZ UN CAS SUSPECT</div>
+			<div class="panel-body" style=" margin: 20px;">
+			<form method="POST" th:action="@{/suspect/add}" th:object="${cassuspect}">
+		 				<div class="from-group">
+		 					<label class="from-label">Identifiant</label>
+		 					<input class="form-control" type="text" name="id"  th:field="*{id}" readonly/>
+		 				</div>
+		 				
+		 				<div class="from-group">
+		 					<label class="from-label">Nom</label>
+		 					<input class="form-control" type="text" name="nom" th:field="*{nom}"/>
+		 				</div>
+		 				<div class="from-group">
+		 					<label class="from-label">Prénom</label>
+		 					<input class="form-control" type="text" name="prenom"  th:field="*{prenom}"/>
+		 				</div>
+		 				
+		 				<div class="from-group">
+		 					<label class="from-label">Adresse</label>
+		 					<input class="form-control" type="text" name="adresse"  th:field="*{adresse}"/>
+		 				</div>
+		 				
+		 					
+		 				<div class="from-group">
+		 					<label class="from-label">Description syptômes</label>
+		 					<textarea class="form-control" type="text" name="symptome" th:field="*{symptome}"></textarea>
+		 				</div>
+		 				
+						 <br/>
+		 				<div class="from-group">
+		 					<input class="btn btn-success" type="submit" name="valider" value="Valider" />		 					
+		 					<input class="btn btn-danger" type="reset" name="annuler" value="Annuler" />
+		 				</div>
+		 			</form>
+			</div>			
+		</div>		
+	</div>
+	
+	</div>	
+		
+
+	
+</body>
+</html>
